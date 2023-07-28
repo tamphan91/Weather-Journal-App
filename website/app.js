@@ -40,7 +40,6 @@ const getDataFromServer = async () => {
     try {
         const request = await fetch("/api/projectdata");
         const result = await request.json();
-        // destructuring of the result object
         return result;
       } catch (e) {
         throw e;

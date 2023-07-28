@@ -17,7 +17,7 @@ const APIKey = "da679c2d4528dfac90fb943fbf6d61db&units=imperial";
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+let newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
 
 /* Function to GET Web API Data*/
 const fetchWeatherData = async (baseURL, zip, apiKey) => {
@@ -37,14 +37,14 @@ const fetchWeatherData = async (baseURL, zip, apiKey) => {
 
 /* Function to GET Project Data */
 const getDataFromServer = async () => {
-    try {
-        const request = await fetch("/api/projectdata");
-        const result = await request.json();
-        return result;
-      } catch (e) {
-        throw e;
-      }
-}
+  try {
+    const request = await fetch("/api/projectdata");
+    const result = await request.json();
+    return result;
+  } catch (e) {
+    throw e;
+  }
+};
 
 // POST Request to store date, temp and user input
 const saveData = async (path, data) => {
@@ -75,12 +75,12 @@ button.addEventListener("click", async () => {
     console.log("temp: ", temp);
     const data = { date: newDate, temp, content: feelings.value };
     saveData("/api/projectdata", data);
-    updateUI(data.temp, data.date, data.content)
+    updateUI(data.temp, data.date, data.content);
   } catch (error) {
     console.error(error);
   }
 });
 
-getDataFromServer().then(data => {
-    console.log('dataRes', data);
-})
+getDataFromServer().then((data) => {
+  console.log("dataRes", data);
+});
